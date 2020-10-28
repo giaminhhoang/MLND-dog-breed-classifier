@@ -7,12 +7,9 @@
 
 ## Project Overview
 
-Welcome to the Convolutional Neural Networks (CNN) project in the AI Nanodegree! In this project, you will learn how to build a pipeline that can be used within a web or mobile app to process real-world, user-supplied images.  Given an image of a dog, your algorithm will identify an estimate of the canine’s breed.  If supplied an image of a human, the code will identify the resembling dog breed.  
+Dog breed classifier is a representative image classification problem in the computer vision (CV). Classifying dogs into their breeds are often challenging even for human by simply looking at them as there are hundreds of distinct breeds. Thus, it needs to be done by computer instead. Solving this problem is useful when rescuing dogs, finding them homes, treating them, etc. or just simply seeing a cute dog and wondering which breed the dog belonged. Given an input image, the first task is to identify if it is a dog image or a human image. If it is a dog image then classify it to one breed of dog. If the image is a human face then identify the most resembling dog breed associated with the face. 
 
-![Sample Output][image1]
-
-Along with exploring state-of-the-art CNN models for classification and localization, you will make important design decisions about the user experience for your app.  Our goal is that by completing this lab, you understand the challenges involved in piecing together a series of models designed to perform various tasks in a data processing pipeline.  Each model has its strengths and weaknesses, and engineering a real-world application often involves solving many problems without a perfect answer.  Your imperfect solution will nonetheless create a fun user experience!
-
+To solve the multi-class classification problem in CV, convolutional neural networks (CNNs) have been widely used for their efficiency to deal with 2-D data such as images. CNN can capture the spatial dependencies of pixels in an image by applying 2-D convolution filters. The architecture is suitable for image datasets since a small set of parameters (the kernel) is used to compute outputs of the entire image, so the model has much fewer parameters compared to a fully connected layer. Put differently, CNN can be trained to understand the sophistication of the image better than feedforward neural networks. Thus, CNN will be employed to accomplish this project. 
 
 ## Project Instructions
 
@@ -35,34 +32,22 @@ __NOTE:__ if you are using the Udacity workspace, you *DO NOT* need to re-downlo
 	```
 		jupyter notebook dog_app.ipynb
 	```
+## Algorithms and Techniques
 
-__NOTE:__ While some code has already been implemented to get you started, you will need to implement additional functionality to successfully answer all of the questions included in the notebook. __Unless requested, do not modify code that has already been included.__
+To solve the multi-class classification problem in CV, CNNs have been widely adopted. CNN can capture the spatial dependencies of pixels in an image by applying 2-D convolution. The architecture is suitable for image datasets since a small set of parameters (the kernel) is used to compute outputs of the entire image, so the model has much fewer parameters compared to a fully connected layer. Put differently, CNN can be trained to understand the sophistication of the image better than feedforward neural networks. The solution involves 3 stages:
 
-__NOTE:__ In the notebook, you will need to train CNNs in PyTorch.  If your CNN is taking too long to train, feel free to pursue one of the options under the section __Accelerating the Training Process__ below.
+Human face detection using OpenCV's implementation of Haar feature-based cascade classifiers.
 
+Dog detection using the VGG-16 model, along with weights that have been trained on ImageNet.
 
+Dog breed classification using first a CNN built from scratch, then trying transfer learning with pre-trained models from ImageNet competition to significantly models boost the accuracy to meet the requirements of the project. Some good candidates are VGGNet and Residual Network (or ResNet). 
 
-## (Optionally) Accelerating the Training Process 
+Besides, data augmentation is also adopted to extend a dataset and improve generalization to avoid overfitting. 
 
-If your code is taking too long to run, you will need to either reduce the complexity of your chosen CNN architecture or switch to running your code on a GPU.  If you'd like to use a GPU, you can spin up an instance of your own:
+### Model Evaluation
+<p align="justify">The CNN model created using transfer learning with
+ResNet101 architecture was trained for 20 epochs, and the final model produced an
+accuracy of 85% on test data. The model correctly predicted breeds for 718 images out of 836 total images.</p>
 
-#### Amazon Web Services
+**Accuracy on test data: 85%**
 
-You can use Amazon Web Services to launch an EC2 GPU instance. (This costs money, but enrolled students should see a coupon code in their student `resources`.)
-
-## Evaluation
-
-Your project will be reviewed by a Udacity reviewer against the CNN project rubric.  Review this rubric thoroughly and self-evaluate your project before submission.  All criteria found in the rubric must meet specifications for you to pass.
-
-
-## Project Submission
-
-Your submission should consist of the github link to your repository.  Your repository should contain:
-- The `dog_app.ipynb` file with fully functional code, all code cells executed and displaying output, and all questions answered.
-- An HTML or PDF export of the project notebook with the name `report.html` or `report.pdf`.
-
-Please do __NOT__ include any of the project data sets provided in the `dogImages/` or `lfw/` folders.
-
-### Ready to submit your project?
-
-Click on the "Submit Project" button in the classroom and follow the instructions to submit!
