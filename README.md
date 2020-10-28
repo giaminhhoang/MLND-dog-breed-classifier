@@ -44,7 +44,7 @@ Dog breed classification using first a CNN built from scratch, then trying trans
 
 Besides, data augmentation is also adopted to extend a dataset and improve generalization to avoid overfitting. 
 
-### Model Evaluation
+## Model Evaluation
 <p align="justify">The CNN model created using transfer learning with
 ResNet101 architecture was trained for 20 epochs, and the final model produced an
 accuracy of 85% on test data. The model correctly predicted breeds for 718 images out of 836 total images.</p>
